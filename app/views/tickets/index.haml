@@ -1,10 +1,11 @@
-%table
+%table{ :cellspacing => 0 }
   %tr.header
     %td Status
     %td Subject
     %td Last Update
   - @tickets.each do |ticket|
-    %tr.ticket
-      %td.status{ :class => ticket.status.to_s }= ticket.status
-      %td.subject= ticket.subject
-      %td.last_update= ticket.updated_at
+    %tr.ticket{ :class => ticket.status.to_s }
+      %td.status= ticket.status
+      %td.subject
+        =link_to ticket.subject, ticket
+      %td.last_update #{time_ago_in_words ticket.updated_at} ago
