@@ -35,11 +35,19 @@ describe Ticket do
     end
 
     it "should detect changes to comments" do
-      pending "Finish ChangeDetection module"
       t = Ticket.create!(@valid_attributes)
-      t.comments << Comment.new( :body => 'This ticket is awesome' )
+      c = Comment.new( :body => 'This ticket is awesome' )
+      t.comments << c
       t.save!
       t.change_sets.last.what_changed.should have_key('comments')
+    end
+
+    it "should only save comment ids in history" do
+      t = Ticket.create!(@valid_attributes)
+      c = Comment.new( :body => 'This comment is awesome' )
+      t.comments << c
+      t.save!
+      t.change_sets.last.what_changed['comments'].should == [ [], [c.id] ]
     end
   end # when editing existing
 

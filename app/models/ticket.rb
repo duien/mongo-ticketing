@@ -15,6 +15,14 @@ class Ticket
   def create_change_set
     what_changed = changes
     change_time = what_changed.delete('updated_at')[1]
+    what_changed.each do |key, values|
+      if self.class.associations.has_key? key
+        simple_values = values.collect do |value|
+          value.collect { |item| item.id }
+        end
+        what_changed[key] = simple_values
+      end
+    end
     change_sets.build( :what_changed => what_changed, :changed_at => change_time )
   end
     
