@@ -19,12 +19,10 @@ module ChangeDetection
       def detect_changes
         klass = self.class
         reloaded = klass.find( id )
-        self.class.changes_detected_for.each do |assoc_or_key|
-          if klass.keys.include? assoc_or_key
+        klass.changes_detected_for.each do |assoc_or_key|
+          if klass.keys.include? assoc_or_key or klass.associations.has_key? assoc_or_key
             old_value = reloaded.__send__(assoc_or_key)
-            changed_keys[assoc_or_key] = old_value unless old_value == __send__(assoc_or_key)
-          elsif false # if an association
-            # other stuff
+            changed_keys[assoc_or_key.to_s] = old_value unless old_value == __send__(assoc_or_key)
           end
         end
       end

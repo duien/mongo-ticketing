@@ -70,7 +70,7 @@ describe ChangeDetection do
         f.foo << "something"
         f.detect_changes
         f.should be_changed
-        f.changes.should == { :foo => [ [], ['something'] ] }
+        f.changes.should == { 'foo' => [ [], ['something'] ] }
       end
 
       it "should not mark dirty if not changed" do
@@ -81,13 +81,13 @@ describe ChangeDetection do
     end # when used with a key
 
     context "when used with an association" do
-      before :all do
+      before :each do
         class Foo
           include MongoMapper::Document
           include ChangeDetection
 
           many :bars
-          detect_changes_for :bar
+          detect_changes_for :bars
         end
 
         class Bar
@@ -95,9 +95,21 @@ describe ChangeDetection do
         end
       end
 
-      it "should mark dirty if changed"
-      it "should not mark dirty if not changed"
-      it "should include ids not entire documents"
+      it "should mark dirty if changed" do
+        f = Foo.create!
+        b = Bar.new
+        f.bars << b
+        f.detect_changes
+        f.should be_changed
+        f.changes.should == { 'bars' => [ [], [b] ] }
+      end
+
+      it "should not mark dirty if not changed" do
+        f = Foo.create!
+        f.detect_changes
+        f.should_not be_changed
+      end
+
     end # when used with an association
 
   end # in use
