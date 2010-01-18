@@ -1,2 +1,6 @@
+# ignore log and tmp directories
 log
 tmp
+
+# ignore generated css
+public/stylesheets/*.css
