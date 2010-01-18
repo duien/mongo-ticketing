@@ -15,6 +15,10 @@ describe Ticket do
     it "should not create a changeset for initial creation" do
       Ticket.create!(@valid_attributes).change_sets.should be_empty
     end
+
+    it "should defalt to :new status" do
+      Ticket.create!(@valid_attributes).status.should == :new
+    end
   end # when first created
 
   context "when editing existing" do

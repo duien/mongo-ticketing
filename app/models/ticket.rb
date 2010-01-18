@@ -3,6 +3,7 @@ class Ticket
   include ChangeDetection
 
   key :subject, String
+  key :status, Symbol, :required => true, :default => :new
   many :change_sets
   many :comments
   timestamps!
