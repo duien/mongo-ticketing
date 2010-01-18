@@ -1,0 +1,10 @@
+%table
+  %tr.header
+    %td Status
+    %td Subject
+    %td Last Update
+  - @tickets.each do |ticket|
+    %tr.ticket
+      %td.status{ :class => ticket.status.to_s }= ticket.status
+      %td.subject= ticket.subject
+      %td.last_update= ticket.updated_at
