@@ -1,3 +1,6 @@
+body
+  :margin 0
+
 tr
   td
     :border-bottom 1px solid #cccccc
@@ -6,3 +9,35 @@ tr
     # something
   &.header td
     :font-weight bold
+
+.ticket
+  :width 50%
+  .current
+    :padding .5em 0
+    .status
+      :float left
+      :background #cccccc
+      :width 3em
+      :padding .25em
+      :margin .5em
+      :text-align center
+    .info
+      :margin-left 4.5em
+      .subject
+        :font-size 120%
+        :font-weight bold
+      .created
+        :font-size 80%
+      .description
+  .history
+    :clear both
+    .change_set
+      :border-top 1px solid #cccccc
+      :padding .5em
+      .metadata
+        .timestamp
+      ul.changes li
+        :list-style-type none
+        :font-weight bold
+        :font-size 80%
+        :font-family sans-serif

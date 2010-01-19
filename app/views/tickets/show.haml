@@ -1,14 +1,15 @@
-.ticket
-  .subject= @ticket.subject
-  .metadata
+%div[@ticket]
+  .current
     .status= @ticket.status
-    .created Created #{time_ago_in_words @ticket.created_at} ago
-  .description= @ticket.description
-.history
-  - @ticket.change_sets.each do |change_set|
-    .change_set
-      .metadata
-        .timestamp #{time_ago_in_words change_set.changed_at } ago
-      %ul.changes
-        - change_set.what_changed.each do |key, (old_value, new_value)|
-          %li #{key} changed from "#{old_value}" to "#{new_value}"
+    .info
+      .subject= @ticket.subject
+      .created Created #{time_ago_in_words @ticket.created_at} ago
+      .description= @ticket.description
+  .history
+    - @ticket.change_sets.each do |change_set|
+      %div[change_set]
+        .metadata
+          .timestamp #{time_ago_in_words change_set.changed_at } ago
+        %ul.changes
+          - change_set.what_changed.each do |key, (old_value, new_value)|
+            %li &#x2192; #{key} changed from "#{old_value}" to "#{new_value}"
