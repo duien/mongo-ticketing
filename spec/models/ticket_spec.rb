@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Ticket do
   before(:each) do
     @valid_attributes = {
-      :subject => 'This is a ticket'
+      :subject => 'This is a ticket',
+      :description => 'More info about ticket'
     }
   end
 
@@ -52,6 +53,13 @@ describe Ticket do
       t.comments << c
       t.save!
       t.change_sets.last.what_changed['comments'].should == [ [], [c.id] ]
+    end
+
+    it "should not create change set if no visible changes" do
+      t = Ticket.create!(@valid_attributes)
+      t.change_sets << ChangeSet.new
+      t.save
+      t.should have(1).change_sets
     end
   end # when editing existing
 

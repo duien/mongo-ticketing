@@ -25,7 +25,7 @@ class Ticket
         what_changed[key] = simple_values
       end
     end
-    change_sets.build( :what_changed => what_changed, :changed_at => change_time )
+    change_sets.build( :what_changed => what_changed, :changed_at => change_time ) unless what_changed.empty?
   end
     
 end
