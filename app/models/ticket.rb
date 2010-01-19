@@ -10,6 +10,7 @@ class Ticket
   timestamps!
 
   detect_changes_for :comments
+  detect_changes_for :description
   
   before_update :detect_changes
   before_update :create_change_set

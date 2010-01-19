@@ -58,8 +58,17 @@ describe Ticket do
     it "should not create change set if no visible changes" do
       t = Ticket.create!(@valid_attributes)
       t.change_sets << ChangeSet.new
-      t.save
+      t.save!
       t.should have(1).change_sets
+    end
+
+    it "should detect changes to description" do
+      t = Ticket.create!(@valid_attributes)
+      t.description.gsub!( /ticket/, 'this ticket')
+      t.save!
+      t.should have(1).change_sets
+      t.change_sets.last.what_changed.should have_key('description')
+      t.change_sets.last.what_changed['description'].should == [ 'More info about ticket', 'More info about this ticket' ]
     end
   end # when editing existing
 
