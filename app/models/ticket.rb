@@ -4,6 +4,7 @@ class Ticket
 
   key :subject, String
   key :status, Symbol, :required => true, :default => :new
+  key :description, String
   many :change_sets
   many :comments
   timestamps!
