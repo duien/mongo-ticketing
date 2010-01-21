@@ -1,0 +1,30 @@
+=round-top-left(!radius)
+  :-moz-border-radius-topleft = !radius
+  :-webkit-border-top-left-radius = !radius
+  :border-top-left-radius = !radius
+=round-top-right(!radius)
+  :-moz-border-radius-topright = !radius
+  :-webkit-border-top-right-radius = !radius
+  :border-top-right-radius = !radius
+=round-bottom-left(!radius)
+  :-moz-border-radius-bottomleft = !radius
+  :-webkit-border-bottom-left-radius = !radius
+  :border-bottom-left-radius = !radius
+=round-bottom-right(!radius)
+  :-moz-border-radius-bottomright = !radius
+  :-webkit-border-bottom-right-radius = !radius
+  :border-bottom-right-radius = !radius
+
+=round-top(!radius)
+  +round-top-left(!radius)
+  +round-top-right(!radius)
+=round-bottom(!radius)
+  +round-bottom-left(!radius)
+  +round-bottom-right(!radius)
+=round-left(!radius)
+  +round-top-left(!radius)
+  +round-bottom-left(!radius)
+=round(!radius)
+  :-moz-border-radius = !radius
+  :-webkit-border-radius = !radius
+  :border-radius = !radius
