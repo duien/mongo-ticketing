@@ -1,0 +1,9 @@
+%div[change_set]
+  .metadata
+    .timestamp #{time_ago_in_words change_set.changed_at } ago
+  %ul.changes
+    - change_set.what_changed.each do |key, (old_value, new_value)|
+      -if key == 'comments'
+        =render :partial => 'comment', :locals => { :comment => new_value - old_value }
+      -else
+        %li &#x2192; #{key} changed from "#{old_value}" to "#{new_value}"
