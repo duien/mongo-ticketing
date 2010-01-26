@@ -11,10 +11,4 @@ describe ChangeSet do
       :timestamp => Time.now
     }
   end
-
-  it "should list changed keys" do
-    c = ChangeSet.new(@valid_attributes)
-    c.should have(3).changed_keys
-    c.changed_keys.should include( 'subject', 'description', 'comments' )
-  end
 end
