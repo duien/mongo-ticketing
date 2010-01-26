@@ -35,24 +35,15 @@ describe Ticket do
       t.subject = 'A ticket about a thing'
       t.save!
       t.change_sets.first.what_changed.should == { 'subject' => [@valid_attributes[:subject],'A ticket about a thing'] }
-      # t.change_sets.first.changed_at.should be_close(t.updated_at, 1)
       t.change_sets.first.changed_at.should == t.updated_at
     end
 
     it "should detect changes to comments" do
       t = Ticket.create!(@valid_attributes)
-      c = Comment.new( :body => 'This ticket is awesome' )
-      t.comments << c
+      t.comment = "This ticket is awesome"
       t.save!
-      t.change_sets.last.what_changed.should have_key('comments')
-    end
-
-    it "should only save comment ids in history" do
-      t = Ticket.create!(@valid_attributes)
-      c = Comment.new( :body => 'This comment is awesome' )
-      t.comments << c
-      t.save!
-      t.change_sets.last.what_changed['comments'].should == [ [], [c.id] ]
+      t.change_sets.last.what_changed.should be_empty
+      t.change_sets.last.comment.should == "This ticket is awesome"
     end
 
     it "should not create change set if no visible changes" do
@@ -71,11 +62,5 @@ describe Ticket do
       t.change_sets.last.what_changed['description'].should == [ 'More info about ticket', 'More info about this ticket' ]
     end
   end # when editing existing
-
-  it "can have comments added" do
-    t = Ticket.create!(@valid_attributes)
-    t.comments << Comment.new( :body => 'This ticket is awesome' )
-    t.should have(1).comments
-  end
 
 end

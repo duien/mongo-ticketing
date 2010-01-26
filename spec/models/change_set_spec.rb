@@ -5,10 +5,11 @@ describe ChangeSet do
     @valid_attributes = {
       :what_changed => {
         'subject' => [ "original subject", "updated subject" ],
-        'description' => [ nil, "added description" ],
-        'comments' => [ [], [1] ]
+        'description' => [ nil, "added description" ]
       },
-      :timestamp => Time.now
+      :timestamp => Time.now,
+      :comment => "Changed some stuff"
     }
   end
+
 end
