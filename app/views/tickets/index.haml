@@ -8,4 +8,6 @@
       %td.status= ticket.status
       %td.subject
         =link_to ticket.subject, ticket
-      %td.last_update #{time_ago_in_words ticket.updated_at} ago
+      %td.last_update 
+        %span.timestamp-relative #{time_ago_in_words ticket.updated_at} ago
+        %span.timestamp-absolute #{ticket.updated_at.strftime('%a %b %e at %l:%M%p')}

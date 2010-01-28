@@ -3,7 +3,10 @@
     .status= @ticket.status
     .info
       .subject= @ticket.subject
-      .created Created #{time_ago_in_words @ticket.created_at} ago
+      .created 
+        Created
+        %span.timestamp-relative #{time_ago_in_words @ticket.created_at} ago
+        %span.timestamp-absolute #{@ticket.created_at.strftime('%a %b %e at %l:%M%p')}
       .description
         :markdown
           #{@ticket.description}

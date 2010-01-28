@@ -1,9 +1,10 @@
 %div[change_set]
-  .metadata
-    .timestamp #{time_ago_in_words change_set.changed_at } ago
   %ul.changes
     - change_set.what_changed.each do |key, (old_value, new_value)|
       %li &#x2192; #{key} changed from "#{old_value}" to "#{new_value}"
   .comment
     :markdown
       #{change_set.comment}
+  .metadata
+    %p.timestamp-relative #{time_ago_in_words change_set.changed_at } ago
+    %p.timestamp-absolute #{change_set.changed_at.strftime('%a %b %e at %l:%M%p')}

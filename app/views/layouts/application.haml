@@ -3,6 +3,18 @@
   %head
     %title Ticketing
     =stylesheet_link_tag :all
+    %script{ :src => 'http://code.jquery.com/jquery-1.4.1.min.js', :type => 'text/javascript' }
+    :javascript
+      $(document).ready( function(){
+        $(".timestamp-relative").live("click",function(){
+          $(this).hide();
+          $(this).siblings(".timestamp-absolute").show();
+        });
+        $(".timestamp-absolute").live("click", function(){
+          $(this).hide();
+          $(this).siblings(".timestamp-relative").show();
+        });
+      });
   %body
     = render :partial => 'layouts/header'
     = yield
