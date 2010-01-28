@@ -2,7 +2,43 @@
 
 body
   :margin 0
+div
+  :margin 0
+  :padding 0
+.header
+  :background #eeeeee
+  h1
+    :font-family sans-serif
+    :margin 0
+    :padding .5em 1em
 
+.timestamp-relative
+.timestamp-absolute
+  :display none
+
+ul.navigation
+  // :text-align center
+  :padding-left 2em
+  :background #eeeeee
+  :margin 0
+  li
+    :display inline-block
+    a
+      :text-decoration none
+      :background #dddddd
+      :color black
+      :font-size 120%
+      :font-family sans-serif
+      :padding .25em .5em
+      :display inline-block
+    &.current 
+      a
+        :background #ffffff
+    a:hover
+      :background #cccccc
+
+table
+  :margin 1em
 tr
   td
     :border-bottom 1px solid #cccccc
@@ -19,7 +55,7 @@ tr
     .status
       :float left
       :background #cccccc
-      :width 3em
+      :min-width 3em
       :padding .25em
       :margin .5em
       :text-align center
@@ -36,11 +72,19 @@ tr
     :clear both
     .change_set
       :border-top 1px solid #cccccc
-      :padding .5em
+      :padding .25em
+      :clear both
       .metadata
-        .timestamp
+        :font-size 80%
+        :text-align right
       ul.changes li
         :list-style-type none
         :font-weight bold
         :font-size 80%
         :font-family sans-serif
+    .comment
+      :background #eeeeee
+      +round(3px)
+      :margin-left 1em
+      p
+        :padding .5em
