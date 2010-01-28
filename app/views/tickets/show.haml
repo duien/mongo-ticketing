@@ -4,6 +4,8 @@
     .info
       .subject= @ticket.subject
       .created Created #{time_ago_in_words @ticket.created_at} ago
-      .description= @ticket.description
+      .description
+        :markdown
+          #{@ticket.description}
   .history
     =render :partial => 'change_set', :collection => @ticket.change_sets
