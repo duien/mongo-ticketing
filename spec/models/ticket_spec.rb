@@ -61,6 +61,18 @@ describe Ticket do
       t.change_sets.last.what_changed.should have_key('description')
       t.change_sets.last.what_changed['description'].should == [ 'More info about ticket', 'More info about this ticket' ]
     end
+    
+    it "should only accept valid statuses" do
+      t = Ticket.create!(@valid_attributes)
+      t.status = :open
+      t.save.should be_true
+      t.status = :bogus
+      t.save.should be_false
+    end
   end # when editing existing
+  
+  it "should provide list of valid statuses" do
+    Ticket.statuses.should == [ :new, :open, :resolved, :closed ]
+  end
 
 end

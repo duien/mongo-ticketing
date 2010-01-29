@@ -2,6 +2,12 @@ class Ticket
   include MongoMapper::Document
   include ChangeDetection
 
+  STATUSES = [ :new, :open, :resolved, :closed ]
+  
+  def self.statuses
+    STATUSES
+  end
+
   key :subject, String
   key :status, Symbol, :required => true, :default => :new
   key :description, String
@@ -10,6 +16,7 @@ class Ticket
   timestamps!
 
   detect_changes_for :description
+  validates_inclusion_of :status, :within => statuses
   
   before_update :detect_changes
   before_update :create_change_set
