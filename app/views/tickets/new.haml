@@ -1,0 +1,9 @@
+%div[@ticket]
+  - form_for :ticket, @ticket, :url => new_ticket_path do |f|
+    .subject
+      %p= f.label :subject
+      %p= f.text_field :subject
+    .description
+      %p= f.label :description
+      %p= f.text_area :description, :cols => 80
+    = submit_tag 'Create'
