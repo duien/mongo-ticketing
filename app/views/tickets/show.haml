@@ -1,4 +1,4 @@
-%div[@ticket]
+-# %div[@ticket]
   .current
     .status= @ticket.status
     .info
@@ -10,5 +10,24 @@
       .description
         :markdown
           #{@ticket.description}
+  .history
+    =render :partial => 'change_set', :collection => @ticket.change_sets
+
+
+%div[@ticket]{ :class => @ticket.status.to_s }
+  .metadata
+    .status= @ticket.status
+    .created
+      %span.timestamp-relative #{time_ago_in_words @ticket.created_at} ago
+      %span.timestamp-absolute #{@ticket.created_at.strftime('%a %b %e at %l:%M%p')}
+    .modified
+      %span.timestamp-relative #{time_ago_in_words @ticket.updated_at} ago
+      %span.timestamp-absolute #{@ticket.updated_at.strftime('%a %b %e at %l:%M%p')}
+    .id= @ticket.id
+  .current
+    %h2.subject= @ticket.subject
+    .description
+      :markdown
+        #{@ticket.description}
   .history
     =render :partial => 'change_set', :collection => @ticket.change_sets

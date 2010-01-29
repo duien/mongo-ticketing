@@ -5,7 +5,8 @@
     %td Last Update
   - @tickets.each do |ticket|
     %tr.ticket{ :class => ticket.status.to_s }
-      %td.status= ticket.status
+      %td.status
+        %span= ticket.status
       %td.subject
         =link_to ticket.subject, ticket
       %td.last_update 
