@@ -8,13 +8,13 @@ class TicketsController < ApplicationController
   end
   
   def new
-    @ticket = Ticket.new(params[:ticket])
+    @ticket = Ticket.new( params[:ticket] )
     if request.post?
       if @ticket.save
         flash[:notice] = "Ticket created"
-        redirect_to tickets_path
+        redirect_to @ticket
       else
-        flash[:notice] = "Unable to create ticket"
+        flash[:error] = "Unable to create ticket"
         redirect_to new_ticket_path
       end
     end
