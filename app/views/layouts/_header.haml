@@ -2,6 +2,3 @@
   %h1 Ticketing
 %ul.navigation
   %li{ :class => controller.controller_name == 'tickets' ? 'current' : nil }= link_to "Tickets", :controller => 'tickets'
--# %ul
-  - controller.methods.each do |method|
-    %li= method
