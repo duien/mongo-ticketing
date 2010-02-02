@@ -1,21 +1,24 @@
 @import round.sass
 
-body
-  :margin 0
-div
+/* GENERAL STYLING FOR ALL ELEMENTS */
+
+body, div, h1, h2, h3, h4, h5, h6, ol, ul, p, pre, table, li
   :margin 0
   :padding 0
+p
+  :padding .5em
+.timestamp-relative
+.timestamp-absolute
+  :display none
+
+/* Style for header */
+
 .header
   :background #eeeeee
   h1
     :font-family sans-serif
     :margin 0
     :padding .5em 1em
-
-.timestamp-relative
-.timestamp-absolute
-  :display none
-
 ul.navigation
   // :text-align center
   :padding-left 2em
@@ -37,8 +40,10 @@ ul.navigation
     a:hover
       :background #cccccc
 
+/* Style for tickets/index */
+
 .controls
-  :margin 1em
+  :padding 1em
 table
   :margin 1em
   tr
@@ -55,13 +60,15 @@ table
     &.header td
       :font-weight bold
 
+/* Style for tickets/show and tickets/new */
+
 .ticket
   :margin 1em
   :width 60%
   .current
     :padding .5em
     h2.subject
-      :margin 0
+      :padding .25em 0
     .description
   .metadata
     :padding .5em
@@ -72,31 +79,31 @@ table
       :border-right-style solid
     .status
     .created
-      :width 7em
+      //:width 7em
     .modified
-      :width 7em
+      //:width 7em
     .id
       :border none
   .history
     :clear both
+    :padding 1em
     .change_set
       :border-top 1px solid #cccccc
-      :padding .25em
-      :clear both
+      :padding .5em 0
       .metadata
         :font-size 80%
         :text-align right
-      ul.changes li
-        :list-style-type none
-        :font-weight bold
-        :font-size 80%
-        :font-family sans-serif
+      ul.changes
+        :padding-bottom .5em
+        li
+          :list-style-type none
+          :font-weight bold
+          :font-size 80%
+          :font-family sans-serif
     .comment
       :background #eeeeee
       +round(3px)
-      :margin-left 1em
-      p
-        :padding .5em
+      //:margin-left 1em
   form
     .subject
       :font-size 120%
@@ -111,6 +118,7 @@ table
         :margin 0
   
 /* STATUS COLORING */
+
 !red = #d74e3d
 !orange = #c97a37
 !yellow = #fcc870
