@@ -21,13 +21,13 @@ p
 .timestamp-absolute
   :display none
 
-.flash
-  :padding 1em
-  :margin .5em
-  .notice
+.flash div
+  :margin 1em
+  :padding .5em
+  &.notice
     :border = 2px solid !green_dark
     +round(3px)
-  .error
+  &.error
     :border = 2px solid !red
     +round(3px)
   
@@ -77,9 +77,10 @@ table
         :text-align center
         span
           +round(3px)
-          :padding .25em
+          :padding .25em .5em
           :font-family sans-serif
           :font-size 80%
+          :font-weight bold
     &.header td
       :font-weight bold
 
