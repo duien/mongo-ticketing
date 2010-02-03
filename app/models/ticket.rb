@@ -2,7 +2,7 @@ class Ticket
   include MongoMapper::Document
   include ChangeDetection
 
-  STATUSES = [ :new, :open, :resolved, :closed ]
+  STATUSES = [ :new, :open, :resolved ]
   
   def self.statuses
     STATUSES
