@@ -20,6 +20,12 @@ class Ticket
   
   before_update :detect_changes
   before_update :create_change_set
+  before_validation :typecast_status
+  
+  def typecast_status
+    # why the hell do I have to do this?
+    self.status = self.status.to_sym
+  end
 
   def create_change_set
     what_changed = changes
