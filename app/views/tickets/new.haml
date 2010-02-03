@@ -1,5 +1,5 @@
 %div[@ticket]
-  - form_for :ticket, @ticket, :url => new_ticket_path do |f|
+  - form_for @ticket do |f|
     .subject
       %p= f.label :subject
       %p= f.text_field :subject
