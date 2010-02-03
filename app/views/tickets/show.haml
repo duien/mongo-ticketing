@@ -8,10 +8,8 @@
       %span.timestamp-relative #{time_ago_in_words @ticket.updated_at} ago
       %span.timestamp-absolute #{@ticket.updated_at.strftime('%a %b %e at %l:%M%p')}
     .id= @ticket.id
-  .current
-    %h2.subject= @ticket.subject
-    .description
-      :markdown
-        #{@ticket.description}
+  = render :partial => 'current'
+  .controls
+    = link_to 'Update ticket', edit_ticket_path
   .history
     =render :partial => 'change_set', :collection => @ticket.change_sets
