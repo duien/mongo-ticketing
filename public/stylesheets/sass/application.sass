@@ -1,5 +1,15 @@
 @import round.sass
 
+/* COLORS AND VARIABLES AND THINGS */
+
+!red = #d74e3d
+!orange = #c97a37
+!yellow = #fcc870
+!green_light = #a4c262
+!green_dark = #519e50
+!blue_pale = #d1d0fe
+!blue = #709bbd
+
 /* GENERAL STYLING FOR ALL ELEMENTS */
 
 body, div, h1, h2, h3, h4, h5, h6, ol, ul, p, pre, table, li
@@ -10,6 +20,19 @@ p
 .timestamp-relative
 .timestamp-absolute
   :display none
+
+.flash
+  :padding 1em
+  :margin .5em
+  .notice
+    :border = 2px solid !green_dark
+    +round(3px)
+  .error
+    :border = 2px solid !red
+    +round(3px)
+  
+
+/* STYLING FOR SPECIFIC VIEWS */
 
 /* Style for header */
 
@@ -118,14 +141,6 @@ table
         :margin 0
   
 /* STATUS COLORING */
-
-!red = #d74e3d
-!orange = #c97a37
-!yellow = #fcc870
-!green_light = #a4c262
-!green_dark = #519e50
-!blue_pale = #d1d0fe
-!blue = #709bbd
 
 .new.ticket 
   & > .metadata, & > .status span
