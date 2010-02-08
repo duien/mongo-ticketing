@@ -1,11 +1,11 @@
 %div[@ticket]{ :class => @ticket.status.to_s }
   = render :partial => 'current'
   - form_for @ticket do |f|
-    = f.error_messages
     .status
       %span= f.label :status
-      %span= f.select :status, Ticket.statuses
+      - options = @ticket.status == :new ? { :selected => :open } : {}
+      = f.select :status, Ticket.statuses, options
     .comment
       %p= f.label :comment
-      %p= f.text_area :comment, :cols => 80
+      %p= f.text_area :comment, :cols => 80, :value => ''
     = submit_tag 'Update'
