@@ -40,7 +40,7 @@ pre
 
 /* Style for header */
 
-.header
+div.header
   :background #eeeeee
   h1
     :font-family sans-serif
@@ -71,7 +71,7 @@ ul.navigation
 
 .controls
   :padding 1em
-table
+table.tickets
   :margin 1em
   tr
     td
@@ -85,8 +85,10 @@ table
           :font-family sans-serif
           :font-size 80%
           :font-weight bold
-    &.header td
-      :font-weight bold
+    &.header
+      :background #eeeeee
+      td
+        :font-weight bold
 
 /* Style for tickets/show and tickets/new */
 
@@ -101,19 +103,19 @@ table
       pre
         :background #eeeeee
   .metadata
-    :padding .5em
-    & > div
-      :display inline-block
-      :padding .5em
-      :border-right-width 1px
-      :border-right-style solid
-    .status
-    .created
-      //:width 7em
-    .modified
-      //:width 7em
-    .id
-      :border none
+    :width 100%
+    table
+      :padding .5em 0
+      td
+        :text-align center
+        :padding 0 1em
+        :border-right 1px solid black
+        &.id
+          :border none
+      tr.header
+        td
+          :font-size 80%
+
   .history
     :clear both
     :padding 1em
@@ -151,14 +153,20 @@ table
   
 /* STATUS COLORING */
 
-.new.ticket 
-  & > .metadata, & > .status span
-    :background= !green_dark
+=status_color( !background, !meta, !foreground=black )
+  & > .status span
+    :background= !background
+  & > .metadata
+    :background= !background
+    td
+      :color= !foreground
+      :border-color= !meta
+    tr.header td
+      :color= !meta
+
+.new.ticket
+  +status_color(!green_dark, !green_light)
 .open.ticket
-  & > .metadata, & > .status span
-    :background = !green_light
+  +status_color(!green_light, !green_dark)
 .resolved.ticket
-  & > .metadata, & > .status span
-    :background =  !blue_pale
-.deleted.ticket
-  & > .metadata, & > .status span
+  +status_color(!blue_pale, !blue)
