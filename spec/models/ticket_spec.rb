@@ -72,7 +72,7 @@ describe Ticket do
   end # when editing existing
   
   it "should provide list of valid statuses" do
-    Ticket.statuses.should == [ :new, :open, :resolved, :closed ]
+    Ticket.statuses.should == [ :new, :open, :resolved ]
   end
 
 end
