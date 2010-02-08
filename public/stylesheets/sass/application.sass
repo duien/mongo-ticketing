@@ -21,6 +21,10 @@ p
 .timestamp-absolute
   :display none
 
+pre
+  :padding .5em
+  :overflow auto
+
 .flash div
   :margin 1em
   :padding .5em
@@ -94,6 +98,8 @@ table
     h2.subject
       :padding .25em 0
     .description
+      pre
+        :background #eeeeee
   .metadata
     :padding .5em
     & > div
@@ -127,6 +133,8 @@ table
     .comment
       :background #eeeeee
       +round(3px)
+      pre
+        :background #dddddd
       //:margin-left 1em
   form
     .subject
@@ -151,9 +159,6 @@ table
     :background = !green_light
 .resolved.ticket
   & > .metadata, & > .status span
-    :background =  !yellow
-.closed.ticket
-  & > .metadata, & > .status span
-    :background = !blue_pale
+    :background =  !blue_pale
 .deleted.ticket
   & > .metadata, & > .status span
