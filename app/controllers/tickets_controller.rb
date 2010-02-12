@@ -1,6 +1,12 @@
 class TicketsController < ApplicationController
   def index
-    @tickets = Ticket.all( :order => 'updated_at desc')
+    finder_options = { :order => 'updated_at desc' }
+    if params[:status].nil?
+      finder_options[:status.in] = [ :new, :open ]
+    else
+      finder_options[:status.in] = params[:status].collect{ |s| s.to_sym }
+    end
+    @tickets = Ticket.all( finder_options )
   end
 
   def show
