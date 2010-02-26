@@ -7,10 +7,19 @@ class TicketsController < ApplicationController
       finder_options[:status.in] = params[:status].collect{ |s| s.to_sym }
     end
     @tickets = Ticket.all( finder_options )
+    respond_to do |format|
+      format.html
+      format.json  { render :json => @tickets.to_json(:only => [ :subject, :description, :status, :_id ]) }
+      # format.xml  { render :xml => @tickets.to_xml(:only => [ :subject, :description, :status, :_id ]) }
+    end
   end
 
   def show
     @ticket = Ticket.find( params[:id] )
+    respond_to do |format|
+      format.html
+      format.json  { render :json => @ticket.to_json }
+    end
   end
   
   def new
