@@ -149,7 +149,7 @@ pre
     +grid_8
     .status_bar
       +row_row
-      :padding .5em 0
+      :padding 10px 0
       .status, .created, .modified, .owner
         +column
         +grid_2
@@ -213,16 +213,42 @@ pre
         :padding 0 .5em
         pre
           :background #dddddd
-        //:margin-left 1em
-    form
-      .subject
+    .form
+      +row_row
+      :border-top 1px solid #cccccc
+      form
+        +column
+        +grid_8
+        .field
+          +row_row
+          .label
+            +column
+            +grid_2
+            :font-weight bold
+            :text-align right
+          .input
+            +column
+            +grid_6
+          .span
+            +column
+            +grid_6
+            +clear_2("left")
+          &.subject
+            :font-size 120%
+            input
+              :font-size 120%
+      
+    //form
+      :border-top 1px solid #cccccc
+      :padding-top 10px
+      //.subject
         :font-size 120%
         :padding .5em
         p
           :margin 0
         input
           :font-size 120%
-      .description
+      //.description
         :padding .5em
         p
           :margin 0

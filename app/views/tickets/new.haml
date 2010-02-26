@@ -1,9 +1,18 @@
-%div[@ticket]
-  - form_for @ticket do |f|
-    .subject
-      %p= f.label :subject
-      %p= f.text_field :subject
-    .description
-      %p= f.label :description
-      %p= f.text_area :description, :cols => 80
-    = submit_tag 'Create'
+#content
+  %div[@ticket]{ :class => @ticket.status.to_s }
+    .form
+      - form_for @ticket do |f|
+        .field.subject
+          .label
+            %p= f.label :subject
+          .input
+            %p= f.text_field :subject
+        .field.description
+          .label
+            %p= f.label :description
+          .input
+            %p= f.text_area :description, :cols => 80, :rows => 10
+        .field.submit
+          .span
+            = submit_tag 'Create'
+  .actions &nbsp;

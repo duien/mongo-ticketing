@@ -1,11 +1,20 @@
-%div[@ticket]{ :class => @ticket.status.to_s }
-  = render :partial => 'current'
-  - form_for @ticket do |f|
-    .status
-      %span= f.label :status
-      - options = @ticket.status == :new ? { :selected => :open } : {}
-      = f.select :status, Ticket.statuses, options
-    .comment
-      %p= f.label :comment
-      %p= f.text_area :comment, :cols => 80, :value => ''
-    = submit_tag 'Update'
+#content
+  %div[@ticket]{ :class => @ticket.status.to_s }
+    = render :partial => 'current'
+    .form
+      - form_for @ticket do |f|
+        .field.status
+          .label
+            %p= f.label :status
+          .input
+            - options = @ticket.status == :new ? { :selected => :open } : {}
+            %p= f.select :status, Ticket.statuses, options
+        .field.comment
+          .label
+            %p= f.label :comment
+          .input
+            %p= f.text_area :comment, :cols => 80, :rows => 10, :value => ''
+        .field.submit
+          .span
+            = submit_tag 'Update'
+  .actions &nbsp;
