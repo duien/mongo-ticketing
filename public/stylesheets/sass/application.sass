@@ -54,54 +54,58 @@ pre
       :padding .5em 1em
 #navigation
   +row
-  ul
-    :overflow hidden
-    :background #eeeeee
-    :margin 0 10px
-    li
-      +column
-      +grid_2
-      //:display inline-block
-      &.first
-        +clear_1("left")
-      a
-        :text-align center
-        :text-decoration none
-        :background #dddddd
-        :color black
-        :font-size 120%
-        :font-family sans-serif
-        :padding .25em .5em
+  .links
+    +column
+    +grid_12
+    :background #eee
+    ul
+      +row_row
+      li
+        +column
+        +grid_2
         //:display inline-block
-        :display block
-      &.current 
+        &.first
+          +clear_1("left")
         a
-          :background #aaa
-          :color white
-      a:hover
-        :background #cccccc
+          :text-align center
+          :text-decoration none
+          :background #dddddd
+          :color black
+          :font-size 120%
+          :font-family sans-serif
+          :padding .25em .5em
+          //:display inline-block
+          :display block
+        &.current 
+          a
+            :background #aaa
+            :color white
+        a:hover
+          :background #cccccc
 #sub_navigation
   +row
-  ul
-    :margin 0 10px
-    :overflow hidden
+  .links
+    +column
+    +grid_12
     :background #aaa
-    li
-      +column
-      +grid_2
-      :text-align center
-      a
-        +round(1em)
-        :text-decoration none
-        :background #ddd
-        :color black
-        :font-family sans-serif
-        :padding .25em .75em
-        :margin .5em 0
-        :font-size 80%
-        :display inline-block
-      a:hover
-        :background #fff
+    ul
+      +row_row
+      li
+        +column
+        +grid_2
+        :text-align center
+        a
+          +round(1em)
+          :text-decoration none
+          :background #ddd
+          :color black
+          :font-family sans-serif
+          :padding .25em .75em
+          :margin .5em 0
+          :font-size 80%
+          :display inline-block
+        a:hover
+          :background #fff
 
 
 /* Style for tickets/index */

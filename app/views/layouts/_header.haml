@@ -2,6 +2,7 @@
   .title
     %h1 Ticketing
 #navigation
-  %ul
-    %li.first{ :class => controller.controller_name == 'dashboard' ? 'current' : nil }= link_to "Dashboard", :controller => 'dashboard'
-    %li{ :class => controller.controller_name == 'tickets' ? 'current' : nil }= link_to "Tickets", :controller => 'tickets'
+  .links
+    %ul
+      %li.first{ :class => controller.controller_name == 'dashboard' ? 'current' : nil }= link_to "Dashboard", :controller => 'dashboard'
+      %li{ :class => controller.controller_name == 'tickets' ? 'current' : nil }= link_to "Tickets", :controller => 'tickets'
