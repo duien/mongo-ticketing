@@ -1,16 +1,18 @@
-.controls
-  = link_to 'New ticket', new_ticket_path
-%table.tickets{ :cellspacing => 0 }
-  %tr.header
-    %td Status
-    %td Subject
-    %td Last Update
-  - @tickets.each do |ticket|
-    %tr.ticket{ :class => ticket.status.to_s }
-      %td.status
-        %span= ticket.status
-      %td.subject
-        =link_to ticket.subject, ticket
-      %td.last_update 
-        %span.timestamp-relative #{time_ago_in_words ticket.updated_at} ago
-        %span.timestamp-absolute #{ticket.updated_at.strftime('%a %b %e at %l:%M%p')}
+#content
+  .display
+    %table.tickets{ :cellspacing => 0 }
+      %tr.header
+        %td Status
+        %td Subject
+        %td Last Update
+      - @tickets.each do |ticket|
+        %tr.ticket{ :class => ticket.status.to_s }
+          %td.status
+            %span= ticket.status
+          %td.subject
+            =link_to ticket.subject, ticket
+          %td.last_update 
+            %span.timestamp-relative #{time_ago_in_words ticket.updated_at} ago
+            %span.timestamp-absolute #{ticket.updated_at.strftime('%a %b %e at %l:%M%p')}
+  .filters
+    Filter

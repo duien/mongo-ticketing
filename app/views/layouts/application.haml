@@ -17,6 +17,7 @@
       });
   %body
     = render :partial => 'layouts/header'
+    = render :partial => "layouts/#{controller.controller_name}_header"
     .flash
       - if flash[:error]
         .error= flash[:error]

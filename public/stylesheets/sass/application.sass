@@ -1,4 +1,5 @@
-@import round.sass
+@import round
+@import grid
 
 /* COLORS AND VARIABLES AND THINGS */
 
@@ -39,56 +40,101 @@ pre
 /* STYLING FOR SPECIFIC VIEWS */
 
 /* Style for header */
-
-div.header
-  :background #eeeeee
-  h1
-    :font-family sans-serif
-    :margin 0
-    :padding .5em 1em
-ul.navigation
-  // :text-align center
-  :padding-left 2em
-  :background #eeeeee
-  :margin 0
-  li
-    :display inline-block
-    a
-      :text-decoration none
-      :background #dddddd
-      :color black
-      :font-size 120%
+#header
+  +row
+  .title
+    +column
+    +grid_12
+    :background #eeeeee
+    h1
+      +column
+      +grid_12
       :font-family sans-serif
-      :padding .25em .5em
-      :display inline-block
-    &.current 
+      :margin 0
+      :padding .5em 1em
+#navigation
+  +row
+  ul
+    :overflow hidden
+    :background #eeeeee
+    :margin 0 10px
+    li
+      +column
+      +grid_2
+      //:display inline-block
+      &.first
+        +clear_1("left")
       a
-        :background #ffffff
-    a:hover
-      :background #cccccc
+        :text-align center
+        :text-decoration none
+        :background #dddddd
+        :color black
+        :font-size 120%
+        :font-family sans-serif
+        :padding .25em .5em
+        //:display inline-block
+        :display block
+      &.current 
+        a
+          :background #aaa
+          :color white
+      a:hover
+        :background #cccccc
+#sub_navigation
+  +row
+  ul
+    :margin 0 10px
+    :overflow hidden
+    :background #aaa
+    li
+      +column
+      +grid_2
+      :text-align center
+      a
+        +round(1em)
+        :text-decoration none
+        :background #ddd
+        :color black
+        :font-family sans-serif
+        :padding .25em .75em
+        :margin .5em 0
+        :font-size 80%
+        :display inline-block
+      a:hover
+        :background #fff
+
 
 /* Style for tickets/index */
 
-.controls
-  :padding 1em
-table.tickets
-  :margin 1em
-  tr
-    td
-      :border-bottom 1px solid #cccccc
-      :padding .5em
-      &.status
-        :text-align center
-        span
-          +round(3px)
-          :padding .25em .5em
-          :font-family sans-serif
-          :font-size 80%
-          :font-weight bold
-    &.header
-      :background #eeeeee
-      td
-        :font-weight bold
+#content
+  +row
+  :margin-top 10px
+  .display
+    +column
+    +grid_8
+    table.tickets
+      :width 100%
+      //:margin 1em
+      tr
+        td
+          :border-bottom 1px solid #cccccc
+          :padding .5em
+          &.status
+            :text-align center
+            span
+              +round(3px)
+              :padding .25em .5em
+              :font-family sans-serif
+              :font-size 80%
+              :font-weight bold
+        &.header
+          :background #eeeeee
+          td
+            :font-weight bold
+  .filters
+    +column
+    +grid_4
+    :background #eee
 
 /* Style for tickets/show and tickets/new */
 
@@ -134,7 +180,7 @@ table.tickets
           :font-family sans-serif
     .comment
       :background #eeeeee
-      +round(3px)
+      +round(8px)
       pre
         :background #dddddd
       //:margin-left 1em
