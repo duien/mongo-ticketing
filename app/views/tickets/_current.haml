@@ -1,21 +1,28 @@
+.status_bar
+  .status
+    .header status
+    .value= @ticket.status
+  .created
+    .header created
+    .value
+      %span.timestamp-relative #{time_ago_in_words @ticket.created_at} ago
+      %span.timestamp-absolute #{@ticket.created_at.strftime('%a %b %e at %l:%M%p')}
+  .modified
+    .header modified
+    .value
+      %span.timestamp-relative #{time_ago_in_words @ticket.updated_at} ago
+      %span.timestamp-absolute #{@ticket.updated_at.strftime('%a %b %e at %l:%M%p')}
+  .owner
+    .header owner
+    .value nobody
+.subject
+  .content
+    %h2= @ticket.subject
 .metadata
-  %table{ :cellspacing => 0 }
-    %tr.header
-      %td.status status
-      %td.created created
-      %td.modified modified
-      %td.id id
-    %tr
-      %td.status= @ticket.status
-      %td.created
-        %span.timestamp-relative #{time_ago_in_words @ticket.created_at} ago
-        %span.timestamp-absolute #{@ticket.created_at.strftime('%a %b %e at %l:%M%p')}
-      %td.modified
-        %span.timestamp-relative #{time_ago_in_words @ticket.updated_at} ago
-        %span.timestamp-absolute #{@ticket.updated_at.strftime('%a %b %e at %l:%M%p')}
-      %td.id= @ticket.id
-.current
-  %h2.subject= @ticket.subject
-  .description
-    :markdown
-      #{@ticket.description}
+  .key id
+  .value= @ticket.id
+.description
+  .content
+    .text
+      :maruku
+        #{@ticket.description}

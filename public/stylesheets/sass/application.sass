@@ -17,13 +17,13 @@ body, div, h1, h2, h3, h4, h5, h6, ol, ul, p, pre, table, li
   :margin 0
   :padding 0
 p
-  :padding .5em
+  :padding .5em 0
 .timestamp-relative
 .timestamp-absolute
   :display none
 
 pre
-  :padding .5em
+  :padding .5em 0
   :overflow auto
 
 .flash div
@@ -142,76 +142,105 @@ pre
 
 /* Style for tickets/show and tickets/new */
 
-.ticket
-  :margin 1em
-  :width 60%
-  .current
-    :padding .5em
-    h2.subject
-      :padding .25em 0
-    .description
-      pre
-        :background #eeeeee
-  .metadata
-    :width 100%
-    table
+#content
+  //defined above
+  & > .ticket
+    +column
+    +grid_8
+    .status_bar
+      +row_row
       :padding .5em 0
-      td
+      .status, .created, .modified, .owner
+        +column
+        +grid_2
         :text-align center
-        :padding 0 1em
-        :border-right 1px solid black
-        &.id
-          :border none
-      tr.header
-        td
+        .header
           :font-size 80%
-
-  .history
-    :clear both
-    :padding 1em
-    .change_set
-      :border-top 1px solid #cccccc
-      :padding .5em 0
-      .metadata
-        :font-size 80%
-        :text-align right
-      ul.changes
-        :padding-bottom .5em
-        li
-          :list-style-type none
-          :font-weight bold
-          :font-size 80%
-          :font-family sans-serif
-    .comment
-      :background #eeeeee
-      +round(8px)
-      pre
-        :background #dddddd
-      //:margin-left 1em
-  form
     .subject
-      :font-size 120%
-      :padding .5em
-      p
-        :margin 0
-      input
-        :font-size 120%
+      +row_row
+      .content
+        +column
+        +grid_8
+        :text-align center
+        h2
+          :padding 10px 0
+    .metadata
+      +row_row
+      .key
+        +column
+        +grid_2
+        :font-weight bold
+        :text-align right
+      .value
+        +column
+        +grid_6
     .description
-      :padding .5em
-      p
-        :margin 0
+      +row_row
+      .content
+        +column
+        +grid_8
+        .text
+          :background #eeeeee
+          +round(8px)
+          :padding 0 10px
+          :margin 10px 0
+
+    .history
+      .change_set
+        +row_row
+        :border-top 1px solid #cccccc
+        :padding-top 10px
+        .user
+          +column
+          +grid_1
+          :font-size 80%
+        .content
+          +column
+          +grid_7
+        .timestamp
+          :font-size 80%
+          :text-align right
+        ul.changes
+          :padding-bottom .5em
+          li
+            :list-style-type none
+            :font-weight bold
+            :font-size 80%
+            :font-family sans-serif
+      .comment
+        :background #eeeeee
+        +round(8px)
+        :padding 0 .5em
+        pre
+          :background #dddddd
+        //:margin-left 1em
+    form
+      .subject
+        :font-size 120%
+        :padding .5em
+        p
+          :margin 0
+        input
+          :font-size 120%
+      .description
+        :padding .5em
+        p
+          :margin 0
+  .actions
+    +column
+    +grid_4
   
 /* STATUS COLORING */
 
 =status_color( !background, !meta, !foreground=black )
   & > .status span
     :background= !background
-  & > .metadata
+  & > .status_bar
     :background= !background
-    td
+    .status, .created, .modified, .owner
       :color= !foreground
-      :border-color= !meta
-    tr.header td
+      //:border-color= !meta
+    .header
       :color= !meta
 
 .new.ticket
