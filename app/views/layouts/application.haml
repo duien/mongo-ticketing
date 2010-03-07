@@ -20,7 +20,9 @@
     = render :partial => "layouts/#{controller.controller_name}_header"
     .flash
       - if flash[:error]
-        .error= flash[:error]
+        .message
+          %p.error= flash[:error]
       - if flash[:notice]
-        .notice= flash[:notice]
+        .message
+          %p.notice= flash[:notice]
     = yield

@@ -23,18 +23,23 @@ p
   :display none
 
 pre
-  :padding .5em 0
+  :padding 10px 0
   :overflow auto
 
-.flash div
-  :margin 1em
-  :padding .5em
-  &.notice
-    :border = 2px solid !green_dark
-    +round(3px)
-  &.error
-    :border = 2px solid !red
-    +round(3px)
+.flash
+  +row
+  :margin-top 10px
+  .message
+    +column
+    +grid_12
+    .notice
+      +round(5px)
+      :background = !yellow
+      :padding 5px 10px
+    .error
+      +round(5px)
+      :background = !red
+      :padding 5px 10px
   
 
 /* STYLING FOR SPECIFIC VIEWS */
