@@ -16,10 +16,6 @@ Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record
   # in your config/boot.rb
-  # config.use_transactional_fixtures = true
-  # config.use_instantiated_fixtures  = false
-  # config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
-
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:
@@ -41,7 +37,7 @@ Spec::Runner.configure do |config|
   #
   # == Mock Framework
   #
-  # RSpec uses it's own mocking framework by default. If you prefer to
+  # RSpec uses its own mocking framework by default. If you prefer to
   # use mocha, flexmock or RR, uncomment the appropriate line:
   #
   # config.mock_with :mocha
