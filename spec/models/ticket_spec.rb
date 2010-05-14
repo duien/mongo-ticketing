@@ -20,6 +20,19 @@ describe Ticket do
     it "should defalt to :new status" do
       Ticket.create!(@valid_attributes).status.should == :new
     end
+    
+    it "should set a unique id" do
+      ticket = Ticket.create!(@valid_attributes)
+      ticket.short_id.should match /[0-9a-f]{5,}/
+    end
+    
+    it "should make one idea longer on colision" do
+      Digest::SHA1.stub(:hexdigest).and_return('42a2f06121039b90ad4dd76e4d8e308624eb72ef')
+      ticket1 = Ticket.create!(@valid_attributes)
+      ticket2 = Ticket.create!(@valid_attributes)
+      ticket1.short_id.should_not eql(ticket2.short_id)
+      ticket1.short_id.should eql(ticket2.short_id.first(ticket1.short_id.length))
+    end
   end # when first created
 
   context "when editing existing" do

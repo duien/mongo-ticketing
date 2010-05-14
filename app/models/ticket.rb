@@ -12,12 +12,14 @@ class Ticket
   key :status, Symbol, :required => true, :default => :new
   key :description, String
   key :comment, String
+  key :short_id, String
   many :change_sets
   timestamps!
 
   detect_changes_for :description
   validates_inclusion_of :status, :within => statuses
   
+  before_create :set_short_id
   before_update :detect_changes
   before_update :create_change_set
   before_validation :typecast_status
@@ -43,6 +45,17 @@ class Ticket
     change_sets.build( :what_changed => what_changed,
                        :changed_at => change_time,
                        :comment => comment ) unless what_changed.empty? and comment.nil?
+  end
+  
+  def set_short_id
+    prefix_length = 5
+    sha = Digest::SHA1.hexdigest(self.to_json)
+    short_id = nil
+    while short_id.nil? || Ticket.first(:short_id => short_id)
+      short_id = sha.first(prefix_length)
+      prefix_length += 1
+    end
+    self.short_id = short_id
   end
     
 end
