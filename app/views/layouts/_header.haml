@@ -1,8 +1,12 @@
 #header
-  .title
-    %h1 Ticketing
-#navigation
-  .links
-    %ul
-      %li.first{ :class => controller.controller_name == 'dashboard' ? 'current' : nil }= link_to "Dashboard", :controller => 'dashboard'
-      %li{ :class => controller.controller_name == 'tickets' ? 'current' : nil }= link_to "Tickets", :controller => 'tickets'
+  %h1= @title
+#nav
+  %ul.navigation
+    %li#dashboard
+      %a{ :href => '/dashboard' } Dashboard
+    %li#tickets 
+      %a{ :href => '/tickets' } Tickets
+    %li#users
+      %a{ :href => '/users' } Users
+    %li#admin
+      %a{ :href => '/admin' } Admin

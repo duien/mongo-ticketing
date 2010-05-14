@@ -44,3 +44,4 @@ Rails::Initializer.run do |config|
 end
 
 MongoMapper.database = "ticketing-#{Rails.env}"
+ActionView::Helpers::AssetTagHelper.register_stylesheet_expansion :tickets => ["application", "tickets"]

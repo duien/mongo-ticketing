@@ -3,6 +3,11 @@
     = render :partial => 'current'
     .form
       - form_for @ticket do |f|
+        .field.subject
+          .label
+            %p= f.label :subject
+          .input
+            = f.text_field :subject
         .field.status
           .label
             %p= f.label :status

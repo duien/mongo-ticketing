@@ -1,18 +1,36 @@
-#content
-  .display
-    %table.tickets{ :cellspacing => 0 }
-      %tr.header
-        %td Status
-        %td Subject
-        %td Last Update
-      - @tickets.each do |ticket|
-        %tr.ticket{ :class => ticket.status.to_s }
-          %td.status
-            %span= ticket.status
-          %td.subject
-            =link_to ticket.subject, ticket
-          %td.last_update 
-            %span.timestamp-relative #{time_ago_in_words ticket.updated_at} ago
-            %span.timestamp-absolute #{ticket.updated_at.strftime('%a %b %e at %l:%M%p')}
+:ruby
+  filters = [ { :name => 'Status', :options => [ 
+                { :name => 'new', :selected => true },
+                { :name => 'open', :selected => true },
+                { :name => 'resolved', :selected => true } ]},
+              { :name => 'Age', :options => [ 
+                { :name => 'today' },
+                { :name => 'yesterday' },
+                { :name => 'this week', :selected => true },
+                { :name => 'this month' } ]}]
+
+#main
+  .tickets
+    .ticket.header
+      .narrow
+        .num #
+      .narrow
+        .status Status
+      .wide
+        .subject Subject
+      .narrow
+        .age Age
+    = render :partial => "ticket", :collection => @tickets
   .filters
-    Filter
+    -# .save_search
+      %a{ :href => 'javascript:void(0);' } Save search
+    -# .saved Saved!
+    - filters.each do |filter|
+      .filter
+        %h2= filter[:name]
+        %ul.options
+          - filter[:options].each do |option|
+            %li{ :class => option[:selected] ? 'selected' : nil }
+              %span.text
+                %span.check &#10003;
+                = option[:name]

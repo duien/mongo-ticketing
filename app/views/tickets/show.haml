@@ -1,7 +1,8 @@
-#content
-  %div[@ticket]{ :class => @ticket.status.to_s }
-    = render :partial => 'current'
-    .history
-      =render :partial => 'change_set', :collection => @ticket.change_sets
-  .actions
-    = link_to 'Update ticket', edit_ticket_path
+#main
+  .content
+    %div[@ticket]{ :class => @ticket.status.to_s }
+      = render :partial => 'current'
+      .history
+        =render :partial => 'change_set', :collection => @ticket.change_sets
+    .actions
+      = link_to 'Update ticket', edit_ticket_path

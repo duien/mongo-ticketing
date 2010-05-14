@@ -115,9 +115,9 @@ pre
 
 /* Style for tickets/index */
 
-#content
-  +row
-  :margin-top 10px
+#main
+  //+row
+  //:margin-top 10px
   .display
     +column
     +grid_8
@@ -140,16 +140,12 @@ pre
           :background #eeeeee
           td
             :font-weight bold
-  .filters
-    +column
-    +grid_4
-    :background #eee
 
 /* Style for tickets/show and tickets/new */
 
-#content
+#main
   //defined above
-  & > .ticket
+  & .content > .ticket
     +column
     +grid_8
     .status_bar

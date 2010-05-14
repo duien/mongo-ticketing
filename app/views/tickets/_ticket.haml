@@ -1,0 +1,9 @@
+.ticket{ :class => ticket.status.to_s }
+  .narrow
+    .num= link_to ticket.short_id, ticket
+  .narrow
+    .status= ticket.status.to_s
+  .wide
+    .subject= link_to ticket.subject, ticket
+  .narrow
+    .age= time_ago_in_words ticket.created_at

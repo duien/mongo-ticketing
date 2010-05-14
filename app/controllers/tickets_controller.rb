@@ -4,7 +4,7 @@ class TicketsController < ApplicationController
     if params[:status].nil?
       finder_options[:status.in] = [ :new, :open ]
     else
-      finder_options[:status.in] = params[:status].collect{ |s| s.to_sym }
+      finder_options[:status.in] = params[:status].map(&:to_sym)
     end
     @tickets = Ticket.all( finder_options )
     respond_to do |format|
