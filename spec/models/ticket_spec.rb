@@ -21,12 +21,12 @@ describe Ticket do
       Ticket.create!(@valid_attributes).status.should == :new
     end
     
-    it "should set a unique id" do
+    it "should generate a unique short_id" do
       ticket = Ticket.create!(@valid_attributes)
       ticket.short_id.should match /[0-9a-f]{5,}/
     end
     
-    it "should make one idea longer on colision" do
+    it "should make one short_id longer on collision" do
       Digest::SHA1.stub(:hexdigest).and_return('42a2f06121039b90ad4dd76e4d8e308624eb72ef')
       ticket1 = Ticket.create!(@valid_attributes)
       ticket2 = Ticket.create!(@valid_attributes)
