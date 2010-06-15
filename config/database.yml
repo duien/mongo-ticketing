@@ -1,0 +1,14 @@
+development:
+  adapter: mongodb
+  database: ticketing-development
+  host: localhost
+
+test:
+  adapter: mongodb
+  database: ticketing-test
+  host: localhost
+
+production:
+  adapter: mongodb
+  database: ticketing
+  host: localhost
