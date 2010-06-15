@@ -1,28 +1,12 @@
 !!!
-%html
-  %head
-    %title Ticketing
-    =stylesheet_link_tag :all
-    %script{ :src => 'http://code.jquery.com/jquery-1.4.1.min.js', :type => 'text/javascript' }
-    :javascript
-      $(document).ready( function(){
-        $(".timestamp-relative").live("click",function(){
-          $(this).hide();
-          $(this).siblings(".timestamp-absolute").show();
-        });
-        $(".timestamp-absolute").live("click", function(){
-          $(this).hide();
-          $(this).siblings(".timestamp-relative").show();
-        });
-      });
-  %body
-    = render :partial => 'layouts/header'
-    = render :partial => "layouts/#{controller.controller_name}_header"
-    .flash
-      - if flash[:error]
-        .message
-          %p.error= flash[:error]
-      - if flash[:notice]
-        .message
-          %p.notice= flash[:notice]
-    = yield
+%head
+  /%link{ :rel => 'stylesheet', :type => 'text/css', :href => '/ticket_tabs.css' }
+  /%script{ :src => '/jquery-1.4.2.min.js', :type => 'text/javascript' }
+  = javascript_include_tag :defaults
+  = stylesheet_link_tag 'application'
+  %title= @title || 'Tickets'
+%body
+  = render :partial => 'layouts/flash'
+  #main
+    .content
+      = yield

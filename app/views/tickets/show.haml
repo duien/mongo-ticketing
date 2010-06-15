@@ -1,8 +1,32 @@
 #main
-  .content
-    %div[@ticket]{ :class => @ticket.status.to_s }
-      = render :partial => 'current'
-      .history
-        =render :partial => 'change_set', :collection => @ticket.change_sets
+  %div[@ticket]{ :class => @ticket.status.to_s }
+    %h2.subject= @ticket.subject
+    .description
+      :maruku
+        #{@ticket.description}
+    .history
+      - @ticket.change_sets.each do |change_set|
+        %div[change_set]
+          .metadata
+            .name Nobody Particular
+            .timestamp #{time_ago_in_words change_set.changed_at } ago
+          .main
+            .avatar
+              .image
+            .content
+              .comment
+                :maruku
+                  #{change_set.comment}
+              %ul.changes
+                - change_set.what_changed.each do |key, (old_value, new_value)|
+                  %li
+                    &#x2192;
+                    %span.key= key
+                    changed from
+                    %code.old "#{old_value}"
+                    to
+                    %code.new "#{new_value}"
+          
+  .sidebar
     .actions
-      = link_to 'Update ticket', edit_ticket_path
+      = link_to 'Update ticket', edit_ticket_path 
