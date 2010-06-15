@@ -1,0 +1,13 @@
+!!!
+%head
+  /%link{ :rel => 'stylesheet', :type => 'text/css', :href => '/ticket_tabs.css' }
+  /%script{ :src => '/jquery-1.4.2.min.js', :type => 'text/javascript' }
+  = javascript_include_tag :defaults
+  = stylesheet_link_tag 'users'
+  %title= @title || 'Tickets'
+%body.users
+  = render :partial => 'layouts/flash'
+  = render :partial => 'layouts/header'
+  = render :partial => 'breadcrumbs'
+  = yield
+  = render :partial => 'layouts/footer'

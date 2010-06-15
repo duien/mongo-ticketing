@@ -1,5 +1,7 @@
 #header
   %h1= @title
+  %p.hello= "Signed in as #{current_user.email}"
+  %p.goodbye= link_to 'Sign Out', {:action=>"destroy", :controller=>"sessions"}
 #nav
   %ul.navigation
     %li#dashboard

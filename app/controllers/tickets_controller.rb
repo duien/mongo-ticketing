@@ -1,4 +1,6 @@
 class TicketsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
     finder_options = { :order => 'updated_at desc' }
     if params[:status].nil?
