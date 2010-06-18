@@ -17,7 +17,7 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find( params[:id] )
+    @ticket = Ticket.find_by_short_id( params[:id] )
     respond_to do |format|
       format.html
       format.json  { render :json => @ticket.to_json }

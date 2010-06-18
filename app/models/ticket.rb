@@ -57,5 +57,9 @@ class Ticket
     end
     self.short_id = short_id
   end
+  
+  def to_param
+    short_id
+  end
     
 end

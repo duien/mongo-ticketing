@@ -90,8 +90,12 @@ describe Ticket do
   end
   
   it "should have some users" do
-    #Ticket.users.should be_a_kind_of Array
-    true.should == true
+    pending
+  end
+  
+  it "should use short_id for params" do
+    t = Ticket.create!(@valid_attributes)
+    t.to_param.should == t.short_id
   end
 
 end
