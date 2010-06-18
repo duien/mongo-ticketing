@@ -16,9 +16,8 @@ $white: #e6edd8
 
 /************** WHAT COLORS FOR WHAT ****
 $admin_back: $red
-$dashboard_back: $blue
+$dashboard_back: $yellow
 $tickets_back: $green
-$users_back: $yellow
 
 /************* CLEAR BLOCKS *************
 
@@ -42,11 +41,20 @@ body
   h1
     +column
     +clear_1(left)
-    +grid_11
+    +grid_8
     padding-top: 25px
     padding-bottom: 25px
     text-shadow: 0 1px 2px $white * 1.5
     font-weight: bold
+  .user_session
+    +column
+    +grid_3
+    padding-top: 25px
+    padding-bottom: 25px
+    text-align: right
+    p
+      margin-bottom: 5px
+      font-size: 80%
 
 #nav
   +row
@@ -119,12 +127,6 @@ ul.navigation
   text-shadow: 0 1px 2px $tickets_back * 1.5
   &:hover
     border-color: $tickets_back
-
-#nav ul.navigation li#users a
-  background: $users_back
-  text-shadow: 0 1px 2px $users_back * 1.5
-  &:hover
-    border-color: $users_back
 
 #nav ul.navigation li#admin a
   background: $admin_back

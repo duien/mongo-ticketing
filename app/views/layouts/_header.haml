@@ -1,14 +1,13 @@
 #header
   %h1= @title
-  %p.hello= "Signed in as #{current_user.email}"
-  %p.goodbye= link_to 'Sign Out', {:action=>"destroy", :controller=>"sessions"}
+  .user_session
+    %p.hello= "Signed in as #{current_user.email}"
+    %p.goodbye= link_to 'Sign Out', {:action=>"destroy", :controller=>"sessions"}
 #nav
   %ul.navigation
     %li#dashboard
       %a{ :href => '/dashboard' } Dashboard
     %li#tickets 
       %a{ :href => '/tickets' } Tickets
-    %li#users
-      %a{ :href => '/users' } Users
     %li#admin
       %a{ :href => '/admin' } Admin
