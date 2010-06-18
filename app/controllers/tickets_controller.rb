@@ -40,12 +40,12 @@ class TicketsController < ApplicationController
   end
   
   def edit
-    @ticket = Ticket.find( params[:id] )
+    @ticket = Ticket.find_by_short_id( params[:id] )
   end
   
   def update
-    @ticket = Ticket.find( params[:id] )
-    if @ticket.update_attributes( params[:ticket] )
+    @ticket = Ticket.find_by_short_id( params[:id] )
+    if @ticket.update_attributes!( params[:ticket] )
       flash[:notice] = "Ticket updated"
       redirect_to @ticket
     else
