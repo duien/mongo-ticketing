@@ -1,37 +1,37 @@
 @import shared
 
 #main
-  :margin-top 100px
+  margin-top: 100px
   +round(10px)
-  :-webkit-box-shadow= 0 0 5px !gray * 0.8
+  -webkit-box-shadow: 0 0 5px $gray * 0.8
   .content
-    :padding 10px 0
+    padding: 10px 0
     h2
-      :font-size 120%
-      :text-align center
-      :text-decoration none
-      :display block
-      :margin 0
-      :padding 10px
+      font-size: 120%
+      text-align: center
+      text-decoration: none
+      display: block
+      margin: 0
+      padding: 10px
       +round(10px)
-      :background= !white * 0.8
-      :-webkit-box-shadow= !white * 0.6 0px 0px 3px inset
-      :color= !gray
+      background: $white * 0.8
+      -webkit-box-shadow: $white * 0.6 0px 0px 3px inset
+      color: $gray
     form
       +row_row
-      :margin-top 10px
-      :margin-bottom 10px
-      :font-size 120%
+      margin-top: 10px
+      margin-bottom: 10px
+      font-size: 120%
       p
         +column
         +grid_5
-        :margin-top 10px
-        :margin-bottom 10px
+        margin-top: 10px
+        margin-bottom: 10px
         label
-          :display block
-          :text-align right
-          :clear left
+          display: block
+          text-align: right
+          clear: left
         input[type=checkbox]
-          :float right
-          :display block
-          :margin-left 10px
+          float: right
+          display: block
+          margin-left: 10px
