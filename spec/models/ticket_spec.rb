@@ -27,7 +27,8 @@ describe Ticket do
     end
     
     it "should make one short_id longer on collision" do
-      Digest::SHA1.stub(:hexdigest).and_return('42a2f06121039b90ad4dd76e4d8e308624eb72ef')
+      time_digest = Digest::SHA1.hexdigest(Time.now.to_s)
+      Digest::SHA1.stub(:hexdigest).and_return( time_digest )
       ticket1 = Ticket.create!(@valid_attributes)
       ticket2 = Ticket.create!(@valid_attributes)
       ticket1.short_id.should_not eql(ticket2.short_id)
@@ -86,6 +87,11 @@ describe Ticket do
   
   it "should provide list of valid statuses" do
     Ticket.statuses.should == [ :new, :open, :resolved ]
+  end
+  
+  it "should have some users" do
+    #Ticket.users.should be_a_kind_of Array
+    true.should == true
   end
 
 end

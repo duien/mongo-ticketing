@@ -5,6 +5,8 @@ describe TicketsController do
   before do
     ticket = mock_model(Ticket)
     Ticket.stub(:all).and_return([ticket])
+    
+    controller.stub(:authenticate_user!).and_return true
   end
   
   describe 'index' do
