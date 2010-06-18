@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products
   
-   map.root :controller => 'tickets'
+  map.root :controller => 'tickets'
   
   map.resources :tickets
   map.devise_for :users
