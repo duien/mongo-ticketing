@@ -28,6 +28,8 @@ body.tickets
         background: $white * 0.9
         border-color: $white * 0.8
         text-shadow: 0 1px 2px $white * 1.2
+        .num, .status,.subject, .age
+          margin: 5px 0
         .status
           text-align: left
       &.new, &.open, &.resolved
@@ -84,7 +86,7 @@ body.tickets
     .filter
       //:padding 10px
       h2
-        font-size: 120%
+        font-size: 100%
         font-weight: normal
         background: $tickets_back * 1.2
         color: $gray
@@ -95,6 +97,7 @@ body.tickets
         list-style-type: none
         li
           margin: 3px 0
+          font-size: 90%
           //:height= 1.2em
           .text
             border: 1px solid $tickets_back
