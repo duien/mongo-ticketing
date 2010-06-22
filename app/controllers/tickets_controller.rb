@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    finder_options = { :order => 'updated_at desc' }
+    finder_options = { :order => 'created_at desc' }
     if params[:status].nil?
       finder_options[:status.in] = [ :new, :open ]
     else
@@ -12,7 +12,6 @@ class TicketsController < ApplicationController
     respond_to do |format|
       format.html
       format.json  { render :json => @tickets.to_json(:only => [ :subject, :description, :status, :_id ]) }
-      # format.xml  { render :xml => @tickets.to_xml(:only => [ :subject, :description, :status, :_id ]) }
     end
   end
 

@@ -29,8 +29,8 @@ describe TicketsController do
       get 'index'
     end
     
-    it "should order by most recent update" do
-      Ticket.should_receive(:all).with(hash_including(:order => 'updated_at desc'))
+    it "should order by created date" do
+      Ticket.should_receive(:all).with(hash_including(:order => 'created_at desc'))
       get 'index'
     end
   end
