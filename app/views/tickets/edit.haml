@@ -2,25 +2,20 @@
   %div[@ticket]{ :class => @ticket.status.to_s }
     = render :partial => 'current'
     %h2.update Update Ticket
-    .form
-      - form_for @ticket do |f|
-        .field.subject
-          .label
-            %p= f.label :subject
-          .input
-            = f.text_field :subject
-        .field.status
-          .label
-            %p= f.label :status
-          .input
-            - options = @ticket.status == :new ? { :selected => :open } : {}
-            %p= f.select :status, Ticket.statuses, options
-        .field.comment
-          .label
-            %p= f.label :comment
-          .input
-            %p= f.text_area :comment, :cols => 80, :rows => 10, :value => ''
-        .field.submit
-          .span
-            = submit_tag 'Update'
+    - form_for @ticket do |f|
+      .field.subject
+        .label= f.label :subject
+        .input= f.text_field :subject
+      .field.status
+        .label= f.label :status
+        .input= f.select :status, Ticket.statuses, @ticket.status == :new ? { :selected => :open } : {}
+      .field.comment
+        .label= f.label :comment
+        .input= f.text_area :comment, :rows => 10, :value => ''
+      .field.submit
+        .cancel
+          = link_to('Cancel', @ticket, :class => 'button')
+        .submit
+          %a.button#submit{:href => 'javascript:void(0);'} Update
+          /= submit_tag 'Update', :class => 'button'
   .sidebar &nbsp;

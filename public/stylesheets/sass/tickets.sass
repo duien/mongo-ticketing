@@ -204,25 +204,50 @@ body.tickets
                 font-weight: bold
               code
                 background: $white * 0.9
+    form.edit_ticket
+      padding: 10px 0
+      .field
+        +row_row
+        padding-top: 5px
+        padding-bottom: 5px
+        .label
+          +column
+          +grid_2
+        .input
+          +column
+          +grid_7
+          input
+            width: 95%
+            &#ticket_subject
+              font-size: 100%
+          textarea
+            width: 95%
+        .cancel
+          +column
+          +grid_2
+          +clear_5(left)
+        .submit
+          +column
+          +grid_2
   .sidebar
     +column
     +grid_3
     padding-top: 10px
     padding-bottom: 20px
-    a.button
-      display: block
-      text-decoration: none
-      font-size: 120%
-      +round(10px)
-      padding: 5px
-      text-align: center
-      background: $white * 0.8
-      -webkit-box-shadow: $white * 0.6 0px 0px 3px inset
-      color: $gray
-      &:hover
-        background: $green * 1.2
-        color: $gray
-        -webkit-box-shadow: $green 0px 0px 3px inset
+.button
+  display: block
+  text-decoration: none
+  font-size: 120%
+  +round(10px)
+  padding: 5px
+  text-align: center
+  background: $white * 0.8
+  -webkit-box-shadow: $white * 0.6 0px 0px 3px inset
+  color: $gray
+  &:hover
+    background: $green * 1.2
+    color: $gray
+    -webkit-box-shadow: $green 0px 0px 3px inset
 
 
 /* STATUS COLORING */
