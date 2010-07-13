@@ -6,6 +6,66 @@ body.tickets
   #subnav
     background: $tickets_back
 
+#status_bar
+  +row_row
+  padding-top: 10px
+  padding-bottom: 10px
+  div
+    text-align: center
+  .header
+    text-transform: uppercase
+    font-size: 70%
+    color: $gray
+    .short_id, .status, .dates, .people
+      border-bottom: 1px solid $green
+      padding-bottom: 5px
+  .info
+    font-size: 80%
+    .short_id, .status, .dates, .people
+      padding-top: 5px
+  .short_id
+    +column
+    +grid_1
+  .status
+    +column
+    +grid_1
+  .dates
+    +column
+    +grid_3
+    .created, .updated
+      +row_row
+      .label
+        +column
+        +grid_1
+        text-transform: uppercase
+        font-size: 80%
+        color: $gray
+        text-align: right
+      .time
+        +column
+        +grid_2
+        text-align: left
+  .people
+    +column
+    +grid_4
+    .relationship
+      +row_row
+      .type
+        +column
+        +grid_1
+        text-transform: uppercase
+        font-size: 80%
+        color: $gray
+        text-align: right
+      .person
+        +column
+        +grid_3
+        text-align: left
+  &.new
+    background: mix($green, $white)
+  &.open
+    background: mix($green, $white)
+
 #main
   .tickets
     +column
