@@ -24,17 +24,18 @@ class Ticket
   before_update :create_change_set
 
   def create_change_set
-    what_changed = changes
+    what_changed = changes.dup
     change_time = what_changed.delete('updated_at')[1]
     comment = what_changed.delete('comment')
     comment = comment[1] unless comment.nil?
     what_changed.each do |key, values|
       if self.class.associations.has_key? key
-        simple_values = values.collect do |value|
-          value.collect { |item| item.id }
+        simple_values = values.map do |value|
+          value.map { |item| item.id }
         end
         what_changed[key] = simple_values
       end
+      what_changed.delete(key) if values.first == values.last
     end
     change_sets.build( :what_changed => what_changed,
                        :changed_at => change_time,
