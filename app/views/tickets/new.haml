@@ -1,4 +1,4 @@
-#content
+#main
   %div[@ticket]{ :class => @ticket.status.to_s }
     .form
       - form_for @ticket do |f|
@@ -15,4 +15,4 @@
         .field.submit
           .span
             = submit_tag 'Create'
-  .actions &nbsp;
+  .sidebar &nbsp;

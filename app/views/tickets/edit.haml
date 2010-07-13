@@ -1,4 +1,4 @@
-#content
+#main
   %div[@ticket]{ :class => @ticket.status.to_s }
     = render :partial => 'current'
     .form
@@ -22,4 +22,4 @@
         .field.submit
           .span
             = submit_tag 'Update'
-  .actions &nbsp;
+  .sidebar &nbsp;
