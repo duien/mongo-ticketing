@@ -6,66 +6,6 @@ body.tickets
   #subnav
     background: $tickets_back
 
-#status_bar
-  +row_row
-  padding-top: 10px
-  padding-bottom: 10px
-  div
-    text-align: center
-  .header
-    text-transform: uppercase
-    font-size: 70%
-    color: $gray
-    .short_id, .status, .dates, .people
-      border-bottom: 1px solid $green
-      padding-bottom: 5px
-  .info
-    font-size: 80%
-    .short_id, .status, .dates, .people
-      padding-top: 5px
-  .short_id
-    +column
-    +grid_1
-  .status
-    +column
-    +grid_1
-  .dates
-    +column
-    +grid_3
-    .created, .updated
-      +row_row
-      .label
-        +column
-        +grid_1
-        text-transform: uppercase
-        font-size: 80%
-        color: $gray
-        text-align: right
-      .time
-        +column
-        +grid_2
-        text-align: left
-  .people
-    +column
-    +grid_4
-    .relationship
-      +row_row
-      .type
-        +column
-        +grid_1
-        text-transform: uppercase
-        font-size: 80%
-        color: $gray
-        text-align: right
-      .person
-        +column
-        +grid_3
-        text-align: left
-  &.new
-    background: mix($green, $white)
-  &.open
-    background: mix($green, $white)
-
 #main
   .tickets
     +column
@@ -177,13 +117,44 @@ body.tickets
   & > .ticket
     +column
     +grid_9
-    padding-top: 20px
+    padding-top: 10px
     padding-bottom: 20px
+    .status_bar
+      +row_row
+      padding-top: 10px
+      padding-bottom: 10px
+      text-align: center
+      .header
+        text-transform: uppercase
+        font-size: 70%
+        color: $gray
+        .short_id, .status, .dates, .people
+          border-bottom: 1px solid
+          padding-bottom: 5px
+      .info
+        font-size: 80%
+        .short_id, .status, .dates, .people
+          padding-top: 5px
+      .short_id, .status
+        +column
+        +grid_1
+      .dates
+        +column
+        +grid_3
+      .people
+        +column
+        +grid_4
+      .label
+        text-transform: uppercase
+        font-size: 80%
+        color: $gray
     h2
       padding: 5px
       background: $white * 0.9
       border-bottom: 1px solid $white * 0.8
       text-shadow: 0 1px 2px $white * 1.2
+      &.update
+        margin-top: 20px
     .description
       padding-top: 10px
       padding-bottom: 10px
@@ -232,11 +203,11 @@ body.tickets
               .key
                 font-weight: bold
               code
-                background: $white * 1.1
+                background: $white * 0.9
   .sidebar
     +column
     +grid_3
-    padding-top: 20px
+    padding-top: 10px
     padding-bottom: 20px
     a.button
       display: block
@@ -252,4 +223,33 @@ body.tickets
         background: $green * 1.2
         color: $gray
         -webkit-box-shadow: $green 0px 0px 3px inset
+
+
+/* STATUS COLORING */
+#main
+  & > .ticket
+    &.new
+      h2.subject
+        //background: mix($red, $white)
+        //border-bottom: 5px solid mix(mix($red, $white), $red)
+        background: mix(mix($red, $white), $red)
+        text-shadow: 0 1px 2px mix($red, $white) * 1.2
+        border-bottom: 1px solid $red
+      .status_bar
+        background: mix($red, $white)
+        .header
+          .short_id, .status, .dates, .people
+            border-color: $red
+    &.open
+      h2.subject
+        //background: mix($yellow, $white)
+        //border-bottom: 5px solid mix(mix($yellow, $white), $yellow)
+        background: mix(mix($yellow, $white), $yellow)
+        text-shadow: 0 1px 2px mix($yellow, $white) * 1.2
+        border-bottom: 1px solid $yellow
+      .status_bar
+        background: mix($yellow, $white)
+        .header
+          .short_id, .status, .dates, .people
+            border-color: $yellow
       

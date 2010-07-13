@@ -1,28 +1,27 @@
+%h2.subject= @ticket.subject
 .status_bar
-  .status
-    .header status
-    .value= @ticket.status
-  .created
-    .header created
-    .value
-      %span.timestamp-relative #{time_ago_in_words @ticket.created_at} ago
-      %span.timestamp-absolute #{@ticket.created_at.strftime('%a %b %e at %l:%M%p')}
-  .modified
-    .header modified
-    .value
-      %span.timestamp-relative #{time_ago_in_words @ticket.updated_at} ago
-      %span.timestamp-absolute #{@ticket.updated_at.strftime('%a %b %e at %l:%M%p')}
-  .owner
-    .header owner
-    .value nobody
-.subject
-  .content
-    %h2= @ticket.subject
-.metadata
-  .key id
-  .value= @ticket.id
+  .header
+    .short_id ID
+    .status Status
+    .dates Dates
+    .people People
+  .info
+    .short_id= @ticket.short_id
+    .status= @ticket.status.to_s
+    .dates
+      .created
+        %span.label Created
+        = format_time(@ticket.created_at)
+      .updated
+        %span.label Updated
+        = format_time(@ticket.updated_at)
+    .people
+      .relationship
+        %span.label Owner
+        Somebody
+      .relationship
+        %span.label Creator
+        Nobody Particular
 .description
-  .content
-    .text
-      :maruku
-        #{@ticket.description}
+  :maruku
+    #{@ticket.description}

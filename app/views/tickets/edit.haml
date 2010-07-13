@@ -1,6 +1,7 @@
 #main
   %div[@ticket]{ :class => @ticket.status.to_s }
     = render :partial => 'current'
+    %h2.update Update Ticket
     .form
       - form_for @ticket do |f|
         .field.subject

@@ -3,7 +3,7 @@ module ApplicationHelper
   
   def format_time(time)
     if time >= 1.week.ago
-      time_ago_in_words time
+      time_ago_in_words( time ) + " ago"
     elsif time.year == Time.now.year
       time.strftime('%b %d')
     else
