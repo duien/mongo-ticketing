@@ -2,13 +2,19 @@ development:
   adapter: mongodb
   database: ticketing-development
   host: localhost
+  mongo:
+    database: ticketing-log
 
 test:
   adapter: mongodb
   database: ticketing-test
   host: localhost
+  mongo:
+    database: ticketing-log
 
 production:
   adapter: mongodb
   database: ticketing
   host: localhost
+  mongo:
+    database: ticketing-log
