@@ -6,16 +6,28 @@
 // {:title=>"malaria", :colors=>["4D4D4D", "637566", "A39C67", "D69E60", "FF704D"]}
 
 $gray: #4d4d4d
+//$white: #e6edd8
+$white: #edebe6
+$background: $white
 
+/* MALARIA COLORS */
 //$blue: #637566
-$green: #a39c67
-$yellow: #d69e60
-$red: #ff704d
+//$green: #a39c67
+//$yellow: #d69e60
+//$red: #ff704d
 
-$white: #e6edd8
+/* LINK COLORS w/ MALARIA */
+//$purple: #594f4f
+//$blue: #547980
 
-$purple: #594f4f
-$blue: #547980
+/* CUSTOM THEME */
+$purple: #713c3d * 1.2
+$blue:   #739bbb
+$green:  #a0ac24
+$yellow: #f6a70c
+$red:    #e75605
+
+
 
 /************** WHAT COLORS FOR WHAT ****
 $admin_back: $red
@@ -74,11 +86,14 @@ a:visited
         +column
         +grid_2
         background: $gray
-        color: $gray
+        //color: $gray
+        color: black
         font-weight: bold
         font-size: 120%
         border-top: 10px solid $white
         border-bottom: 10px solid $white
+        &:hover
+          color: black
 
 #subnav
   +row
