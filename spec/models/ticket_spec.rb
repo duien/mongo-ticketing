@@ -9,47 +9,70 @@ describe Ticket do
   end
 
   context "when first created" do
-    it "should create a new instance given valid attributes" do
-      Ticket.create!(@valid_attributes)
+    subject{ Ticket.create!(@valid_attributes) }
+
+    it{ should be_valid }
+    it("should not create a changeset"){ should have(:no).change_sets }
+    it("should defalt to :new status"){ subject.status.should == :new }
+    it("should generate a short_id"){ subject.short_id.should match /[0-9a-f]{5,}/ }
+  end
+    
+  context "with hash collision on short_id" do
+    before do
+      Digest::SHA1.stub(:hexdigest => Digest::SHA1.hexdigest(Time.now.to_s) )
     end
 
-    it "should not create a changeset for initial creation" do
-      Ticket.create!(@valid_attributes).change_sets.should be_empty
+    let(:ticket_1){ Ticket.create!(@valid_attributes) }
+    let(:ticket_2){ Ticket.create!(@valid_attributes) }
+
+    it "should not create two identical short_ids" do
+      ticket_1.short_id.should_not eql(ticket_2.short_id)
     end
 
-    it "should defalt to :new status" do
-      Ticket.create!(@valid_attributes).status.should == :new
+    it "should make second short_id longer" do
+      ticket_1.short_id # call this first since lets are lazy-loaded
+      ticket_2.short_id.should match(%r/^#{ticket_1.short_id}/)
     end
-    
-    it "should generate a unique short_id" do
-      ticket = Ticket.create!(@valid_attributes)
-      ticket.short_id.should match /[0-9a-f]{5,}/
-    end
-    
-    it "should make one short_id longer on collision" do
-      time_digest = Digest::SHA1.hexdigest(Time.now.to_s)
-      Digest::SHA1.stub(:hexdigest).and_return( time_digest )
-      ticket1 = Ticket.create!(@valid_attributes)
-      ticket2 = Ticket.create!(@valid_attributes)
-      ticket1.short_id.should_not eql(ticket2.short_id)
-      ticket1.short_id.should eql(ticket2.short_id.first(ticket1.short_id.length))
-    end
-  end # when first created
+  end
 
   context "when editing existing" do
-    it "should create a changeset when ticket is modified" do
-      t = Ticket.create!(@valid_attributes)
-      t.subject = 'A ticket about a thing'
-      t.save!
-      t.should have(1).change_sets
+    context "when setting an attribute" do
+      let(:ticket) do 
+        t = Ticket.create!(@valid_attributes)
+        t.subject = 'A ticket about a thing'
+        t.save!
+        t
+      end
+
+      it "should create a changeset" do
+        ticket.should have(1).change_sets
+      end
+
+      it "should set what_changed" do
+        ticket.change_sets.first.what_changed.should == { 'subject' => [@valid_attributes[:subject],'A ticket about a thing'] }
+      end
+
+      it "should set updated_at" do
+        ticket.change_sets.first.changed_at.should == ticket.updated_at
+      end
+
     end
 
-    it "should set change set properties" do
-      t = Ticket.create!(@valid_attributes)
-      t.subject = 'A ticket about a thing'
-      t.save!
-      t.change_sets.first.what_changed.should == { 'subject' => [@valid_attributes[:subject],'A ticket about a thing'] }
-      t.change_sets.first.changed_at.should == t.updated_at
+    context "when modifying an attribute" do
+      let(:ticket) do 
+        t = Ticket.create!(@valid_attributes)
+        t.description.gsub!( /ticket/, 'this ticket')
+        t.save!
+        t
+      end
+
+      it "should create a change set" do
+        ticket.should have(1).change_sets
+      end
+
+      it "should add changed attribute to what_changed" do
+        ticket.change_sets.last.what_changed['description'].should == [ 'More info about ticket', 'More info about this ticket' ]
+      end
     end
 
     it "should detect changes to comments" do
@@ -67,14 +90,7 @@ describe Ticket do
       t.should have(1).change_sets
     end
 
-    it "should detect changes to description" do
-      t = Ticket.create!(@valid_attributes)
-      t.description.gsub!( /ticket/, 'this ticket')
-      t.save!
-      t.should have(1).change_sets
-      t.change_sets.last.what_changed.should have_key('description')
-      t.change_sets.last.what_changed['description'].should == [ 'More info about ticket', 'More info about this ticket' ]
-    end
+   
     
     it "should only accept valid statuses" do
       t = Ticket.create!(@valid_attributes)
