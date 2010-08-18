@@ -15,7 +15,6 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'tickets'
   
   map.resources :tickets
-  map.devise_for :users
 
   # Sample resource route with options:
   #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }

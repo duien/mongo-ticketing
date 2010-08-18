@@ -21,7 +21,6 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem 'mongo', :version => '1.0'
   config.gem 'mongo_mapper', :version => '~> 0.7.0'
-  config.gem 'devise', :version => '=1.0.7'
   config.gem 'haml'
   
   require 'lib/extensions'

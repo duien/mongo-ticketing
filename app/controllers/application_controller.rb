@@ -3,7 +3,6 @@
 
 class ApplicationController < ActionController::Base
   include MongoDBLogging
-  before_filter :log_current_user
   
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -17,12 +16,7 @@ class ApplicationController < ActionController::Base
   private
   
   def set_title
-    @title = 'My Awesome Application Name'
+    @title = 'Mongo Ticketing'
   end
   
-  def log_current_user
-    if Rails.logger.respond_to?(:add_metadata) and current_user
-      Rails.logger.add_metadata(:current_user => current_user.as_json)
-    end
-  end
 end

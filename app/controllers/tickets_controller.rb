@@ -1,5 +1,4 @@
 class TicketsController < ApplicationController
-  before_filter :authenticate_user!
   
   def index
     finder_options = { :order => 'created_at desc' }
