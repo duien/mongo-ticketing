@@ -11,12 +11,20 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   # filter_parameter_logging :password
   
-  before_filter :set_title
+  before_filter :set_title, :authenticate
+  helper_method :warden
   
   private
   
   def set_title
     @title = 'Mongo Ticketing'
   end
-  
+
+  def warden
+    request.env['warden'] 
+  end
+
+  def authenticate
+    warden.authenticate!
+  end
 end

@@ -1,5 +1,10 @@
 #header
   %h1= @title
+  .user_session
+    - if warden.authenticated?
+      %p.hello= "Signed in as #{warden.user.email}"
+      %p.goodbye= link_to 'Sign Out', '.'
+  
 #nav
   %ul.navigation
     %li#dashboard
