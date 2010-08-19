@@ -14,7 +14,7 @@ body.tickets
   .tickets
     +column
     +grid_9
-    padding-top: 20px
+    padding-top: 10px
     padding-bottom: 20px
     .ticket
       +row_row
@@ -63,8 +63,10 @@ body.tickets
         +grid_5
   .filters
     overflow: visible
-    +column
-    +grid_3
+    // +column
+    // +grid_3
+    padding-top: 5px
+    padding-bottom: 5px
     margin-top: 10px
     margin-bottom: 10px
     background: $tab_color
@@ -117,9 +119,9 @@ body.tickets
               padding: 1px 3px
         li.selected
           .text
-            border-color: $background
+            border-color: $tab_color * 1.4
             .check
-              background: $background
+              background: $tab_color * 1.4
   & > .ticket
     +column
     +grid_9
@@ -211,7 +213,7 @@ body.tickets
                 font-weight: bold
               code
                 background: $background * 0.9
-    form.edit_ticket
+    form.edit_ticket, form.new_ticket
       padding: 10px 0
       .field
         +row_row

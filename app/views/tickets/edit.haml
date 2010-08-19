@@ -3,16 +3,16 @@
     = render :partial => 'current'
     %h2.update Update Ticket
     - form_for @ticket do |f|
-      .field.subject
+      .field.subject_field
         .label= f.label :subject
         .input= f.text_field :subject
-      .field.status
+      .field.status_field
         .label= f.label :status
         .input= f.select :status, Ticket.statuses, @ticket.status == :new ? { :selected => :open } : {}
-      .field.comment
+      .field.comment_field
         .label= f.label :comment
         .input= f.text_area :comment, :rows => 10, :value => ''
-      .field.submit
+      .field.submit_field
         .cancel
           = link_to('Cancel', @ticket, :class => 'button')
         .submit

@@ -1,18 +1,14 @@
 #main
   %div[@ticket]{ :class => @ticket.status.to_s }
-    .form
-      - form_for @ticket do |f|
-        .field.subject
-          .label
-            %p= f.label :subject
-          .input
-            %p= f.text_field :subject
-        .field.description
-          .label
-            %p= f.label :description
-          .input
-            %p= f.text_area :description, :cols => 80, :rows => 10
-        .field.submit
-          .span
-            = submit_tag 'Create'
+    %h2.create Create Ticket
+    - form_for @ticket do |f|
+      .field.subject_field
+        .label= f.label :subject
+        .input= f.text_field :subject
+      .field.description_field
+        .label= f.label :description
+        .input= f.text_area :description, :cols => 80, :rows => 10
+      .field.submit_field
+        .submit
+          %a.button#submit{:href => 'javascript:void(0);'} Update
   .sidebar &nbsp;
