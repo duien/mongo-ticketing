@@ -22,10 +22,6 @@
         .age Age
     = render :partial => "ticket", :collection => @tickets
   .sidebar
-    = link_to 'Create ticket', new_ticket_path, :class => 'button'
-    -# .save_search
-      %a{ :href => 'javascript:void(0);' } Save search
-    -# .saved Saved!
     .filters
       - filters.each do |filter|
         .filter

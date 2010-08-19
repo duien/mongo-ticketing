@@ -9,6 +9,8 @@
         .label= f.label :description
         .input= f.text_area :description, :cols => 80, :rows => 10
       .field.submit_field
+        .cancel
+          = link_to('Cancel', :back, :class => 'button')
         .submit
-          %a.button#submit{:href => 'javascript:void(0);'} Update
+          %a.button#submit{:href => 'javascript:void(0);'} Create
   .sidebar &nbsp;
