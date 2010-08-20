@@ -1,8 +1,11 @@
 require 'warden'
 
-ActionController::Dispatcher.middleware.insert_after(ActionController::ParamsParser, Warden::Manager) do |manager|
+ActionController::Dispatcher.middleware.use(SessionManager)
+
+ActionController::Dispatcher.middleware.insert_after(
+  ActionController::ParamsParser, Warden::Manager) do |manager|
   manager.default_strategies :password
-  manager.failure_app = AuthenticationMiddleware.new
+  manager.failure_app = SessionManager
 
   manager.serialize_into_session do |user|
     user.id.to_s
@@ -11,7 +14,6 @@ ActionController::Dispatcher.middleware.insert_after(ActionController::ParamsPar
   manager.serialize_from_session do |user|
     User.find(id)
   end
-
 end
 
 Warden::Strategies.add(:password) do

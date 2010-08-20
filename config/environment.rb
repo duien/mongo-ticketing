@@ -22,6 +22,7 @@ Rails::Initializer.run do |config|
   config.gem 'mongo', :version => '~>1.0.7'
   config.gem 'mongo_mapper', :version => '~>0.8.3'
   config.gem 'warden', :version => '~>0.10.7'
+  config.gem 'sinatra'
   config.gem 'haml'
   
   require 'lib/extensions'

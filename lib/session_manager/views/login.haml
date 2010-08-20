@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Please log in to proceed
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/application.css' }
+  %body
+    #main
+      .session.new
+        Please log in
+        %form{ :action => '/login', :method => 'post' }
+          .field.email_field
+            .label{ :form => 'user_email' } Email
+            .input
+              %input#user_email{ :name => 'user[email]', :type => 'text' }
+          .field.password_field
+            .label{ :form => 'user_password' } Password
+            .input
+              %input#user_password{ :name => 'user[password]', :type => 'password' }
