@@ -1,3 +1,0 @@
-[submodule "vendor/plugins/mongo_db_logger"]
-	path = vendor/plugins/mongo_db_logger
-	url = git@github.com:duien/mongo_db_logger.git
