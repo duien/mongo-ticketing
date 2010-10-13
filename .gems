@@ -2,3 +2,4 @@ rails --version '=2.3.5'
 mongo --version '~>1.0.7'
 mongo_mapper --version '~>0.8.3'
 haml
+maruku
